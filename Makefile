@@ -7,17 +7,18 @@ SRCS = \
 	pool.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 NAME = safe-autoit.dll
+DEPS = $(SRCS:%.cpp=%.d)
+
 
 all: $(NAME)
+
+include $(DEPS)
 
 $(NAME): $(OBJS)
 	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(OBJS)
 
-depend: .depend
-
-.depend: $(SRCS)
-	rm -f ./.depend
-	$(CXX) $(CXXFLAGS) -MM $^ -MF  ./.depend;
+%.d: %.cpp
+	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
 
 clean:
 	rm -f *.o
@@ -26,5 +27,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-include .depend

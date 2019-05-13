@@ -29,6 +29,7 @@
 #define PARAMS6(t1, t2, t3, t4, t5) t1 _1, t2 _2, t3 _3, t4 _4, t5 _5
 #define PARAMS7(t1, t2, t3, t4, t5, t6) t1 _1, t2 _2, t3 _3, t4 _4, t5 _5, t6 _6
 #define PARAMS8(t1, t2, t3, t4, t5, t6, t7) t1 _1, t2 _2, t3 _3, t4 _4, t5 _5, t6 _6, t7 _7
+#define PARAMS9(t1, t2, t3, t4, t5, t6, t7, t8) t1 _1, t2 _2, t3 _3, t4 _4, t5 _5, t6 _6, t7 _7, t8 _8
 #define NARGS1
 #define NARGS2 _1
 #define NARGS3 _1, _2
@@ -37,6 +38,7 @@
 #define NARGS6 _1, _2, _3, _4, _5
 #define NARGS7 _1, _2, _3, _4, _5, _6
 #define NARGS8 _1, _2, _3, _4, _5, _6, _7
+#define NARGS9 _1, _2, _3, _4, _5, _6, _7, _8
 #define ARGS1
 #define ARGS2 , NARGS2
 #define ARGS3 , NARGS3
@@ -45,5 +47,6 @@
 #define ARGS6 , NARGS6
 #define ARGS7 , NARGS7
 #define ARGS8 , NARGS8
+#define ARGS9 , NARGS9
 #define CAT(a, b) a##b
 #define EV(a, b) CAT(a, b)
