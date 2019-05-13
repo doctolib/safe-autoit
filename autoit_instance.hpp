@@ -1,5 +1,8 @@
 #pragma once
 #include <windows.h>
+#include <memory>
+#include <utility>
+#include "autoit_instance_symbols.hpp"
 
 struct autoit_instance {
 	autoit_instance(void) = default;

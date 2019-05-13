@@ -5,8 +5,8 @@
 /* X(void, AU3_Init) */
 X(int, AU3_error)
 X(int, AU3_AutoItSetOption, LPCWSTR, int)
-X(void, AU3_ClipGet, LPWSTR, int)
-X(void, AU3_ClipPut, LPCWSTR)
+// X(void, AU3_ClipGet, LPWSTR, int)
+// X(void, AU3_ClipPut, LPCWSTR)
 X(int, AU3_ControlClick, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, int, int, int)
 X(int, AU3_ControlClickByHandle, HWND, HWND, LPCWSTR, int, int, int)
 	/*

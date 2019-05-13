@@ -4,9 +4,9 @@
 struct autoit_instance_symbols {
 	autoit_instance_symbols(void);
 	~autoit_instance_symbols(void);
-	private:
-	#define X(result, name, params) result (*name)(params);
+	#define X(result, name, params...) result __stdcall (*name)(params);
 	# include "autoit_functions.h"
 	#undef X
+	private:
 	HMODULE handle;
 };
