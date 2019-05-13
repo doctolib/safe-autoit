@@ -26,9 +26,9 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
 
 clean:
-	rm -f *.o
+	rm -f *.o *.d
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST)
 
 re: fclean all
