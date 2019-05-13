@@ -2,7 +2,7 @@
 # define X(type, name, args...) ;
 #endif
 
-/* X(void, AU3_Init) */
+// X(void, AU3_Init)
 X(int, AU3_error)
 X(int, AU3_AutoItSetOption, LPCWSTR, int)
 X(void, AU3_ClipGet, LPWSTR, int)
@@ -98,7 +98,7 @@ X(void, AU3_WinGetTitleByHandle, HWND, LPWSTR, int)
 X(int, AU3_WinKill, LPCWSTR, LPCWSTR)
 X(int, AU3_WinKillByHandle, HWND)
 X(int, AU3_WinMenuSelectItem, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR)
-// X(int, AU3_WinMenuSelectItemByHandle, HWND, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR)
+X(int, AU3_WinMenuSelectItemByHandle, HWND, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR)
 X(void, AU3_WinMinimizeAll)
 X(void, AU3_WinMinimizeAllUndo)
 X(int, AU3_WinMove, LPCWSTR, LPCWSTR, int, int, int, int)

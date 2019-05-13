@@ -5,7 +5,7 @@
 #include "AutoItX3_DLL.h"
 
 void work(void) {
-	AU3_Sleep(2000);
+	for (int i = 0; i < 3; i++) AU3_Sleep(2000);
 }
 
 int main(void) {
