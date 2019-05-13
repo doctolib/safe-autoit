@@ -5,7 +5,7 @@
 #include "autoit_instance_symbols.hpp"
 
 struct autoit_instance {
-	autoit_instance(void) = default;
+	autoit_instance(void);
 	autoit_instance(autoit_instance&&) = default;
 	autoit_instance(autoit_instance const&) = delete;
 	#define X(type, name, ...) type name(__VA_ARGS__) const;

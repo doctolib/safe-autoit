@@ -1,4 +1,5 @@
 *.o
 *.dll
+*.exe
 *.d
 /.depend
