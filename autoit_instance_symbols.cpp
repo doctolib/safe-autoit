@@ -17,15 +17,12 @@ autoit_instance_symbols::autoit_instance_symbols(void) {
 		CopyFileW(autoit_path, this->library_path, false);
 		this->handle = LoadLibraryW(this->library_path);
 		this->is_library_clone = true;
-		std::cout << "loaded copied library as " << this->handle << std::endl;
 	} else {
 		this->handle = LoadLibraryW(AUTOIT_LIBRARY_NAME);
 		autoit_path_size = GetModuleFileNameW(this->handle, autoit_path, countof(autoit_path));
 		wcscpy_s(this->library_path, countof(this->library_path), autoit_path);
 		autoit_loaded = true;
-		std::cout << "loaded library from " << autoit_path << std::endl;
 	}
-	std::cout << "library handle is " << this->handle << std::endl;
 	void __stdcall (*init)(void) = (void __stdcall (*)(void))GetProcAddress(this->handle, "AU3_Init");
 	init();
 	#define X(type, name, params...) this->name = (type __stdcall (*)(params))GetProcAddress(this->handle, #name);
@@ -34,7 +31,6 @@ autoit_instance_symbols::autoit_instance_symbols(void) {
 }
 
 autoit_instance_symbols::~autoit_instance_symbols(void) {
-	std::cout << "freeing library " << this->handle << std::endl;
 	FreeLibrary(this->handle);
 	if (this->is_library_clone) DeleteFileW(this->library_path);
 }
