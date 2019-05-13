@@ -2,10 +2,29 @@
 #include <windows.h>
 #include "autoit_instance_symbols.hpp"
 
-#define AUTOIT_LIBRARY_NAME "AutoItX3.dll"
+#define AUTOIT_LIBRARY_NAME L"AutoItX3.dll"
+#define countof(xs) (sizeof(xs) / sizeof(*(xs)))
+
+bool autoit_loaded = false;
+DWORD autoit_path_size = 0;
+WCHAR autoit_path[MAX_PATH + 1] = {0};
+DWORD tmp_path_size = 0;
+WCHAR tmp_path[MAX_PATH + 1] = {0};
 
 autoit_instance_symbols::autoit_instance_symbols(void) {
-	this->handle = LoadLibraryA(AUTOIT_LIBRARY_NAME);
+	if (autoit_loaded) {
+		GetTempFileNameW(L".", L"ait", 0, this->library_path);
+		CopyFileW(autoit_path, this->library_path, false);
+		this->handle = LoadLibraryW(this->library_path);
+		this->is_library_clone = true;
+		std::cout << "loaded copied library as " << this->handle << std::endl;
+	} else {
+		this->handle = LoadLibraryW(AUTOIT_LIBRARY_NAME);
+		autoit_path_size = GetModuleFileNameW(this->handle, autoit_path, countof(autoit_path));
+		wcscpy_s(this->library_path, countof(this->library_path), autoit_path);
+		autoit_loaded = true;
+		std::cout << "loaded library from " << autoit_path << std::endl;
+	}
 	std::cout << "library handle is " << this->handle << std::endl;
 	void __stdcall (*init)(void) = (void __stdcall (*)(void))GetProcAddress(this->handle, "AU3_Init");
 	init();
@@ -15,5 +34,7 @@ autoit_instance_symbols::autoit_instance_symbols(void) {
 }
 
 autoit_instance_symbols::~autoit_instance_symbols(void) {
+	std::cout << "freeing library " << this->handle << std::endl;
 	FreeLibrary(this->handle);
+	if (this->is_library_clone) DeleteFileW(this->library_path);
 }

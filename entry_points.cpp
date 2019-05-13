@@ -6,6 +6,7 @@
 #define FUNvoid void_autoit_function
 #define FUNint autoit_function
 #define FUNHWND autoit_function
+#define FUNDWORD autoit_function
 
 extern "C" {
 #define X(result, name, ...) result name(EV(PARAMS, PP_NARG(magic,## __VA_ARGS__))(__VA_ARGS__)) { \

@@ -8,5 +8,7 @@ struct autoit_instance_symbols {
 	# include "autoit_functions.h"
 	#undef X
 	private:
+	bool is_library_clone;
 	HMODULE handle;
+	WCHAR library_path[MAX_PATH + 1];
 };
