@@ -10,15 +10,15 @@ Desktop. This is a drop-in replacement for /AutoItX3.dll/ which wraps
 the original library in such a way that it can be called in a
 multi-threaded manner.
 
-* Dependencies
-  In order to build this library /GNU Make/ and /mingw-w64/ for i686
-  are required.
+** Dependencies
+   In order to build this library /GNU Make/ and /mingw-w64/ for i686
+   are required.
 
-* Building
-  Run ~make~.
+** Building
+   Run ~make~.
 
-* Usage
-  The generated /AutoItX3.dll/ expects to find the
-  /AutoItX3_original.dll/ library at runtime, which is just the
-  original /AutoItX3.dll/, renamed. The generated library fulfills the
-  same interface as that of the one it wraps.
+** Usage
+   The generated /AutoItX3.dll/ expects to find the
+   /AutoItX3_original.dll/ library at runtime, which is just the
+   original /AutoItX3.dll/, renamed. The generated library fulfills
+   the same interface as that of the one it wraps.
