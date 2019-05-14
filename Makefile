@@ -1,6 +1,6 @@
 CXX = i686-w64-mingw32-g++
 CXXFLAGS += -Wall -Wextra -Werror
-LDFLAGS += -static-libgcc -static-libstdc++ -Bstatic -lpthread -Bdynamic
+LDFLAGS += -static-libgcc -static-libstdc++ -lwinpthread
 SRCS = \
 	autoit_instance_symbols.cpp \
 	autoit_instance.cpp \
@@ -11,12 +11,7 @@ NAME = AutoItX3.dll
 BASE = $(NAME:%.dll=%)
 DEPS = $(SRCS:%.cpp=%.d)
 
-TEST = test.exe
-
-all: $(NAME) $(TEST)
-
-$(TEST): $(OBJS) test.o $(NAME)
-	$(CXX) -o $(TEST) $(CXXFLAGS) $(LDFLAGS) -L . -l$(BASE) $(OBJS) test.o
+all: $(NAME)
 
 include $(DEPS)
 
@@ -30,6 +25,6 @@ clean:
 	rm -f *.o *.d
 
 fclean: clean
-	rm -f $(NAME) $(TEST)
+	rm -f $(NAME)
 
 re: fclean all
