@@ -1,0 +1,24 @@
+#+TITLE: Thread-safe AutoIt wrapper
+#+AUTHOR: Victor Schubert
+#+EMAIL: victor.schubert@doctolib.com
+#+OPTIONS: toc:nil
+
+The AutoIt library (/AutoItX3.dll/) is not thread safe. However
+because we use this library with /node-ffi/ we do not have control
+over which thread is used to call into the library in Zipper
+Desktop. This is a drop-in replacement for /AutoItX3.dll/ which wraps
+the original library in such a way that it can be called in a
+multi-threaded manner.
+
+* Dependencies
+  In order to build this library /GNU Make/ and /mingw-w64/ for i686
+  are required.
+
+* Building
+  Run ~make~.
+
+* Usage
+  The generated /AutoItX3.dll/ expects to find the
+  /AutoItX3_original.dll/ library at runtime, which is just the
+  original /AutoItX3.dll/, renamed. The generated library fulfills the
+  same interface as that of the one it wraps.
