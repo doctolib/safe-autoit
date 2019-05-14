@@ -7,15 +7,16 @@ SRCS = \
 	entry_points.cpp \
 	pool.cpp
 OBJS = $(SRCS:%.cpp=%.o)
-NAME = safeautoit.dll
+NAME = AutoItX3.dll
+BASE = $(NAME:%.dll=%)
 DEPS = $(SRCS:%.cpp=%.d)
 
-TEST = minimize-all.exe
+TEST = test.exe
 
 all: $(NAME) $(TEST)
 
 $(TEST): $(OBJS) test.o $(NAME)
-	$(CXX) -o $(TEST) $(CXXFLAGS) $(LDFLAGS) -L . -lsafeautoit $(OBJS) test.o
+	$(CXX) -o $(TEST) $(CXXFLAGS) $(LDFLAGS) -L . -l$(BASE) $(OBJS) test.o
 
 include $(DEPS)
 
@@ -23,7 +24,7 @@ $(NAME): $(OBJS)
 	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
 
 %.d: %.cpp
-	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
+	$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
 
 clean:
 	rm -f *.o *.d
