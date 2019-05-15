@@ -13,14 +13,6 @@ DEPS = $(SRCS:%.cpp=%.d)
 
 all: $(NAME)
 
-include $(DEPS)
-
-$(NAME): $(OBJS)
-	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
-
-%.d: %.cpp
-	$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
-
 clean:
 	rm -f *.o *.d
 
@@ -28,3 +20,11 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+$(NAME): $(OBJS)
+	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
+
+%.d: %.cpp
+	$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
+
+include $(DEPS)
