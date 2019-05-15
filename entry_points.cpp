@@ -9,10 +9,10 @@
 #define FUNDWORD autoit_function
 
 extern "C" {
-void AU3_Init(void) { };
-unsigned int AU3_PixelChecksum(LPRECT, int) { return 0; };
+void __declspec(dllexport) WINAPI AU3_Init(void) { };
+unsigned int __declspec(dllexport) WINAPI AU3_PixelChecksum(LPRECT, int) { return 0; };
 
-#define X(result, name, ...) result name(EV(PARAMS, PP_NARG(magic,## __VA_ARGS__))(__VA_ARGS__)) { \
+#define X(result, name, ...) result __declspec(dllexport) WINAPI name(EV(PARAMS, PP_NARG(magic,## __VA_ARGS__))(__VA_ARGS__)) { \
 	return EV(FUN, result)(&autoit_instance::name EV(ARGS, PP_NARG(magic,## __VA_ARGS__))); \
 }
 #include "autoit_functions.h"
