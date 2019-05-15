@@ -8,8 +8,6 @@
 bool autoit_loaded = false;
 DWORD autoit_path_size = 0;
 WCHAR autoit_path[MAX_PATH + 1] = {0};
-DWORD tmp_path_size = 0;
-WCHAR tmp_path[MAX_PATH + 1] = {0};
 
 autoit_instance_symbols::autoit_instance_symbols(void) {
 	if (autoit_loaded) {
