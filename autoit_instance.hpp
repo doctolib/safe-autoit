@@ -9,7 +9,7 @@ struct autoit_instance {
 	autoit_instance(autoit_instance&&) = default;
 	autoit_instance(autoit_instance const&) = delete;
 	#define X(type, name, ...) type name(__VA_ARGS__) const;
-	# include "autoit_functions.h"
+	# include "autoit_functions.hpp"
 	#undef X
 	private:
 	std::unique_ptr<autoit_instance_symbols> symbols;
