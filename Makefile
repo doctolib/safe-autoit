@@ -9,7 +9,6 @@ SRCS = \
 OBJS = $(SRCS:%.cpp=%.o)
 NAME = AutoItX3.dll
 BASE = $(NAME:%.dll=%)
-DEPS = $(SRCS:%.cpp=%.d)
 
 all: $(NAME)
 
@@ -23,8 +22,3 @@ re: fclean all
 
 $(NAME): $(OBJS)
 	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
-
-%.d: %.cpp
-	$(CXX) $(CXXFLAGS) $< -MM -MT $(@:.d=.o) >$@
-
-include $(DEPS)
