@@ -45,6 +45,9 @@
 
 #include <windows.h>
 
+#undef WINAPI
+#define WINAPI __cdecl
+
 AU3_API void WINAPI AU3_Init(void);
 AU3_API int AU3_error(void);
 
