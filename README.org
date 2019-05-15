@@ -22,3 +22,15 @@ multi-threaded manner.
    /AutoItX3_original.dll/ library at runtime, which is just the
    original /AutoItX3.dll/, renamed. The generated library fulfills
    the same interface as that of the one it wraps.
+
+** WTF is /autoit_functions.h/?
+   In this project we make use of a C programming technique called “X
+   macros”. X macros are useful whenever one needs to maintain several
+   lists of things in parallel, which must be kept in sync. (Here we
+   need to keep the entry points list, symbol list and the
+   instructions to get symbols, in sync.)
+
+   To do this, one writes a file which lists all the elements of the
+   list with all of their data, as the arguments to some macro named
+   ‘X’. Then, where a list needs to be generated, one defines ‘X’ and
+   includes the list file.
