@@ -34,3 +34,9 @@ multi-threaded manner.
    list with all of their data, as the arguments to some macro named
    ‘X’. Then, where a list needs to be generated, one defines ‘X’ and
    includes the list file.
+
+** To do
+   - [ ] Remove dependency on libwinpthread
+   - [ ] Embed the original AutoItX3.dll for true drop-in replacement
+   - [ ] Tighten the locks on the mutex
+   - [ ] Limit the amount of simultaneous calls
