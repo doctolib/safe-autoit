@@ -13,7 +13,7 @@ BASE = $(NAME:%.dll=%)
 all: $(NAME)
 
 clean:
-	rm -f *.o *.d
+	rm -f *.o
 
 fclean: clean
 	rm -f $(NAME)
