@@ -1,5 +1,5 @@
 CXX = i686-w64-mingw32-g++
-CXXFLAGS += -Wall -Wextra -Werror
+CXXFLAGS += -Wall -Wextra -Werror --std=c++17
 LDFLAGS += -static-libgcc -static-libstdc++ -lwinpthread
 SRCS = \
 	autoit_instance_symbols.cpp \
