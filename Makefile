@@ -27,7 +27,7 @@ re: fclean all
 $(NAME): $(OBJS)
 	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
 
-$(TEST_NAME): $(TEST_OBJS)
-	$(CXX) -o $(TEST_NAME) $(CXXFLAGS) $(LDFLAGS) $(TEST_OBJS)
+$(TEST_NAME): $(TEST_OBJS) $(NAME)
+	$(CXX) -o $(TEST_NAME) $(CXXFLAGS) $(LDFLAGS) $(TEST_OBJS) -L. -l$(BASE)
 
 .PHONY: all clean fclean re test
