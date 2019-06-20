@@ -63,3 +63,9 @@ such a way that it can be called in a multi-threaded manner.
    - [ ] Support ~AU3_PixelChecksum~, which breaks our macro voodoo
      because it returns an ~unsigned int~ and that type’s name
      contains two words.
+
+** Licenses
+   This wrapper is released under the terms of the MIT license.
+
+   The AutoIt license can be found in AutoItX3_license.html and at
+   https://www.autoitscript.com/autoit3/docs/license.htm.
