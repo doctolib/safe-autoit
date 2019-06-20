@@ -5,25 +5,47 @@
 
 The AutoIt library (/AutoItX3.dll/) is not thread safe. However
 because we use this library with /node-ffi/ we do not have control
-over which thread is used to call into the library in Zipper
-Desktop. This is a drop-in replacement for /AutoItX3.dll/ which wraps
-the original library in such a way that it can be called in a
-multi-threaded manner.
-
-** Dependencies
-   In order to build this library /GNU Make/ and /mingw-w64/ for i686
-   are required.
+over which thread is used to call into the library. This is a drop-in
+replacement for /AutoItX3.dll/ which wraps the original library in
+such a way that it can be called in a multi-threaded manner.
 
 ** Building
    Run ~make~.
 
-** Usage
-   The generated /AutoItX3.dll/ expects to find the
-   /AutoItX3_original.dll/ library at runtime, which is just the
-   original /AutoItX3.dll/, renamed. The generated library fulfills
-   the same interface as that of the one it wraps.
+** Dependencies
 
-** WTF is /autoit_functions.hpp/?
+*** Build-time
+    In order to build this library /GNU Make/ and /mingw-w64/ for i686
+    are required.
+
+*** Run-time
+    The generated /AutoItX3.dll/ expects to find the
+    /AutoItX3_original.dll/ library at runtime, which is just the
+    original /AutoItX3.dll/, renamed. It also requires
+    /libwinpthread-1.dll/ which comes from your /mingw-w64/
+    distribution.
+
+** Usage
+    The generated library fulfills the same interface as that of the
+    one it wraps.
+
+** How it works
+   This wrapper is a bit of a hack. It dynamically loads several
+   instances of the original AutoItX3 library and ensures no two
+   threads call into the same instance simultaneously. Because loading
+   the same library several times returns the same instance over and
+   over on Windows, we create copies of the original library, which we
+   load. These are named ~ait*.dll~ where the wildcard is a random
+   string of Windows’ choosing.
+
+   The wrapper manages a pool of instances. The pool starts up empty
+   and whenever a thread calls a function from AutoItX3, if the pool
+   is empty, a new instance is created. Once a function from AutoItX3
+   returns, it goes back to the pool unless there already are five
+   instances in the pool. In that case the instance is unloaded and
+   the temporary file gets deleted.
+
+** What is /autoit_functions.hpp/?
    In this project we make use of a C programming technique called “X
    macros”. X macros are useful whenever one needs to maintain several
    lists of things in parallel, which must be kept in sync. (Here we
@@ -36,7 +58,8 @@ multi-threaded manner.
    includes the list file.
 
 ** To do
-   - [ ] Remove dependency on libwinpthread
    - [ ] Embed the original AutoItX3.dll for true drop-in replacement
-   - [ ] Tighten the locks on the mutex
    - [ ] Limit the amount of simultaneous calls
+   - [ ] Support ~AU3_PixelChecksum~, which breaks our macro voodoo
+     because it returns an ~unsigned int~ and that type’s name
+     contains two words.
