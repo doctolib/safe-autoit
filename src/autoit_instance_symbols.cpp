@@ -23,7 +23,7 @@ autoit_instance_symbols::autoit_instance_symbols(void) {
 	}
 	void __stdcall (*init)(void) = (void __stdcall (*)(void))GetProcAddress(this->handle, "AU3_Init");
 	init();
-	#define X(type, name, params...) this->name = (type __stdcall (*)(params))GetProcAddress(this->handle, #name);
+	#define X(type, name, params...) this->name = (type __stdcall (*)(params))(void*)GetProcAddress(this->handle, #name);
 	# include "autoit_functions.hpp"
 	#undef X
 }
