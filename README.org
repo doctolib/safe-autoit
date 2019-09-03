@@ -57,10 +57,10 @@ such a way that it can be called in a multi-threaded manner.
    ‘X’. Then, where a list needs to be generated, one defines ‘X’ and
    includes the list file.
 
-** To do
-   - [ ] Embed the original AutoItX3.dll for true drop-in replacement
-   - [ ] Limit the amount of simultaneous calls
-   - [ ] Support ~AU3_PixelChecksum~, which breaks our macro voodoo
+** Possible improvements
+   - Embed the original AutoItX3.dll for true drop-in replacement
+   - Limit the amount of simultaneous calls
+   - Support ~AU3_PixelChecksum~, which breaks our macro voodoo
      because it returns an ~unsigned int~ and that type’s name
      contains two words.
 
