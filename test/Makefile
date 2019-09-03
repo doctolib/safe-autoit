@@ -1,6 +1,6 @@
 CXX = i686-w64-mingw32-g++
-CXXFLAGS += -Wall -Wextra -Werror --std=c++17
-LDFLAGS += -static-libgcc -static-libstdc++
+CXXFLAGS += -Wall -Wextra -Werror --std=c++17 -I../include
+LDFLAGS += -static-libgcc -static-libstdc++ -L.. -lAutoItX3
 SRCS = test.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 NAME = test.exe
@@ -15,7 +15,10 @@ fclean:
 
 re: fclean all
 
-$(NAME): $(OBJS)
-	$(CXX) -o $(NAME) -shared $(CXXFLAGS) $(LDFLAGS) $(OBJS)
+../AutoItX3.dll:
+	make -C ..
+
+$(NAME): $(OBJS) ../AutoItX3.dll
+	$(CXX) -o $(NAME) $(CXXFLAGS) $(LDFLAGS) $(OBJS)
 
 .PHONY: all clean fclean re
