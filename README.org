@@ -26,8 +26,8 @@ such a way that it can be called in a multi-threaded manner.
     distribution.
 
 ** Usage
-    The generated library fulfills the same interface as that of the
-    one it wraps.
+   The generated library fulfills the same interface as that of the
+   one it wraps.
 
 ** How it works
    This wrapper is a bit of a hack. It dynamically loads several
