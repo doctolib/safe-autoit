@@ -2,7 +2,7 @@
 #include <windows.h>
 #include "autoit_instance_symbols.hpp"
 
-#define AUTOIT_LIBRARY_NAME L"AutoItX3_original.dll"
+#define AUTOIT_LIBRARY_NAME L"AutoItX3_x64_original.dll"
 #define countof(xs) (sizeof(xs) / sizeof(*(xs)))
 
 bool autoit_loaded = false;

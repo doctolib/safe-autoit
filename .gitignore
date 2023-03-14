@@ -4,3 +4,4 @@
 *.d
 /.depend
 *.zip
+!AutoItX3_x64.dll

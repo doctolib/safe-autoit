@@ -1,4 +1,4 @@
-CXX = i686-w64-mingw32-g++
+CXX = x86_64-w64-mingw32-g++
 CXXFLAGS += -Wall -Wextra -Werror --std=c++17 -I include
 LDFLAGS += -static-libgcc -static-libstdc++ -lwinpthread
 SRCS = \
@@ -7,7 +7,7 @@ SRCS = \
 	src/entry_points.cpp \
 	src/pool.cpp
 OBJS = $(SRCS:%.cpp=%.o)
-NAME = AutoItX3.dll
+NAME = AutoItX3_x64.dll
 BASE = $(NAME:%.dll=%)
 
 TEST_NAME = test.exe
@@ -19,7 +19,7 @@ all: $(NAME) $(TEST_NAME)
 clean:
 	rm -f $(OBJS) $(TEST_OBJS)
 
-fclean: clean 
+fclean: clean
 	rm -f $(NAME) $(TEST_NAME)
 
 re: fclean all
